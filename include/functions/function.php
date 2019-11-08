@@ -1,11 +1,11 @@
-<?php  
+<?php
     $mysqli = new mysqli("localhost", "root", "", "music_shop");
 
 function checklogin() {
 	session_start();
-	if(!$_SESSION['email'])  
-	{  
-	header("Location: login");//redirect to login page to secure the welcome page without login access.  
+	if(!$_SESSION['email'])
+	{
+	header("Location: login");//redirect to login page to secure the welcome page without login access.
 	}
 }
 
@@ -46,16 +46,48 @@ function sign_up($username,$email,$password) {
 function login_user($email,$password) {
 	global $mysqli;
 	$encrypted_password= md5($password);
-    $check_user="select * from users WHERE email ='$email' AND password='$encrypted_password'";  
-    $run=mysqli_query($mysqli,$check_user);  
-    if(mysqli_num_rows($run))  
+    $check_user="select * from users WHERE email ='$email' AND password='$encrypted_password'";
+    $run=mysqli_query($mysqli,$check_user);
+    if(mysqli_num_rows($run))
     {
        return 1 ;
     }
     else
     {
       return 0;
-    }  
+    }
 }
+
+function check_email($email) {
+	global $mysqli;
+    $check_user="select * from users WHERE email ='$email'";
+    $run=mysqli_query($mysqli,$check_user);
+    if(mysqli_num_rows($run))
+    {
+       return 1 ;
+    }
+    else
+    {
+      return 0;
+    }
+}
+
+
+function is_verified($email) {
+	global $mysqli;
+    $check_user="select * from users WHERE email ='$email' AND varification=1";
+    $run=mysqli_query($mysqli,$check_user);
+    if(mysqli_num_rows($run))
+    {
+       return 1 ;
+    }
+
+    else
+    {
+      return 0;
+    }
+}
+
+
 
 ?>
