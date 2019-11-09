@@ -1,6 +1,6 @@
-<?php  
-session_start();//session starts here  
-  
+<?php
+session_start();//session starts here
+
 ?>
 <html>
 
@@ -14,6 +14,7 @@ session_start();//session starts here
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
@@ -26,6 +27,9 @@ session_start();//session starts here
                 <h2 class="h3 mb-3 font-weight-normal text-white">Please Login</h2>
             </center>
         </div>
+        <script>
+            // $('form input[type="submit"]').prop("disabled", true);
+</script>
         <div class="form-label-group">
             <input type="text" id="inputEmail" class="form-control" placeholder="Username" name="email" required autofocus>
             <label for="inputEmail">Username</label>
@@ -48,33 +52,35 @@ session_start();//session starts here
 
 </html>
 
-<?php  
+<?php
 include('../include/functions/function.php');
-if(isset($_POST['login']))  
+if(isset($_POST['login']))
 {
-    $user_email=$_POST['email'];  
+    $user_email=$_POST['email'];
     $user_pass=$_POST['pass'];
     $check_email=check_email($user_email);
     $is_verified=is_verified($user_email);
-    if ($check_email>0 && $is_verified==1) {
-            $response = login_user($user_email,$user_pass);
-            if($response == 1){
-               echo "<script>window.open('../index.php','_self')</script>";  
-                $_SESSION['email']=$user_email;
-            }
-            if ($response == 0){
-              echo "<script>alert('Email or password is incorrect!')</script>";
-            }   
-     }
 
      if ($check_email==0) {
           echo "<script>alert('Email is not registered')</script>";
      }
-     if ($is_verified==0) {
-          echo "<script>alert('Please verify your email')</script>";
+     if ($check_email==1) {
+      if ($is_verified==1) {
+              $response = login_user($user_email,$user_pass);
+              if($response == 1){
+                echo "<script>$('#login').prop('value', 'Logged in')</script>";
+                 echo "<script>window.open('../index.php','_self')</script>";
+                  $_SESSION['email']=$user_email;
+
+              }
+              if ($response == 0){
+                echo "<script>alert('Email or password is incorrect!')</script>";
+              }
+       }
+       if ($is_verified==0) {
+            echo "<script>alert('Please verify your email')</script>";
+       }
      }
 
-
-
-}  
+}
 ?>

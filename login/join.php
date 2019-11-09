@@ -1,6 +1,6 @@
-<?php  
-session_start();//session starts here  
-  
+<?php
+session_start();//session starts here
+
 ?>
 <html>
 
@@ -23,7 +23,7 @@ session_start();//session starts here
         <div class="text-center mb-4">
             <center>
                 <img class="mb-4" src="../include/logo.png" alt="" width="72" height="72">
-                <h2 class="h3 mb-3 font-weight-normal text-white">Please Login</h2>
+                <h2 class="h3 mb-3 font-weight-normal text-white">Signup Here</h2>
             </center>
         </div>
         <div class="form-label-group">
@@ -56,11 +56,11 @@ session_start();//session starts here
 
 </html>
 
-<?php  
+<?php
 include('../include/functions/function.php');
-if(isset($_POST['join']))  
+if(isset($_POST['join']))
 {
-    $user_email=$_POST['email'];  
+    $user_email=$_POST['email'];
     $user_pass=$_POST['pass'];
     $user_pass2=$_POST['pass2'];
     $username=$_POST['username'];
@@ -75,7 +75,7 @@ if(isset($_POST['join']))
             if($response == 1){
                  echo "<script>alert('Done')</script>";
             }
-    
+
         if ($response == 0){
           echo "<script>alert('Something went wrong! Please try again')</script>";
         }
@@ -85,6 +85,6 @@ if ($check_email>0) {
 }
 
 
- }  
+ }
 }
 ?>
