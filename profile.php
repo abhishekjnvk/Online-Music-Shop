@@ -37,7 +37,7 @@ checklogin();     //function to check weather user is logged in or not
         <div class=" col-lg-3 col-md-6 col-sm-9 mx-auto border rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
             <center>
                 <h1 class="text-secondary mt-5"><b>Favourite songs</b></h1>
-                <button class="btn btn-warning border border-secondary mx-auto" id="clear_fav_list">Clear list</button>
+                <button class="btn btn-secondary border border-secondary mx-auto" id="clear_fav_list">Clear list</button>
             </center>
             <?php
               $email = $currentUser['email'];
@@ -53,8 +53,8 @@ checklogin();     //function to check weather user is logged in or not
                         </div>
                         <div class="col-lg-8">
                             <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
-                            <p class="mt-2 text-warning"><?php echo $row['artist']; ?></p>
-                            <p class="mt-2 text-warning" id="url_song"><?php echo $row['url']; ?></p>
+                            <p class="mt-2 text-white"><?php echo $row['artist']; ?></p>
+                            <p class="mt-2 text-secondary" id="url_song"><?php echo $row['url']; ?></p>
                             <p class="mt-2 text-secondary"><button class="btn btn-primary" id="remove_fav">💔</button></p>
                         </div>
                     </div>
@@ -67,8 +67,8 @@ checklogin();     //function to check weather user is logged in or not
         <div class=" col-lg-3 mx-auto col-md-6 col-sm-9 border rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
             <center>
                 <h1 class="text-secondary mt-5"><b>Cart</b></h1>
-                <button class="btn btn-warning border border-secondary mx-auto" id="empty_cart">Empty</button>
-                <button class="btn btn-warning border border-secondary mx-auto">Proceed to checkout</button>
+                <button class="btn btn-secondary border border-secondary mx-auto" id="empty_cart">Empty</button>
+                <button class="btn btn-warning border border-success mx-auto">Proceed to checkout</button>
 
             </center>
             <?php
@@ -86,7 +86,7 @@ checklogin();     //function to check weather user is logged in or not
                         </div>
                         <div class="col-lg-8">
                             <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
-                            <p class="mt-2 text-warning"><?php echo $row['artist']; ?></p>
+                            <p class="mt-2 text-white"><?php echo $row['artist']; ?></p>
                         </div>
                     </div>
                 </center>
@@ -101,7 +101,7 @@ checklogin();     //function to check weather user is logged in or not
         <div class=" col-lg-3 col-md-6 col-sm-9 mx-3 border mx-auto rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
             <center>
                 <h1 class="text-secondary mt-5"><b>Last Played</b></h1>
-                <button class="btn btn-warning border border-secondary mx-auto" id="delete_history">Delete History</button>
+                <button class="btn btn-secondary border border-secondary mx-auto" id="delete_history">Delete History</button>
             </center>
 
             <?php
@@ -114,7 +114,7 @@ checklogin();     //function to check weather user is logged in or not
                 <center>
                     <div class="">
                         <p class="mt-1 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
-                        <p class="text-warning"><?php echo $row['artist']; ?></p>
+                        <p class="text-white"><?php echo $row['artist']; ?></p>
                         <p class="text-secondary"><?php echo "time of listen"; ?></p>
                     </div>
                 </center>

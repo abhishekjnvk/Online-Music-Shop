@@ -123,9 +123,9 @@ jQuery(function ($) {
                 }
             }).get(0),
             btnPrev = $('#btnPrev').on('click', function () { //function to run after clicking on back button
+              add_current_playing()
                 if ((index - 1) > -1) {
                     index--;
-                    add_current_playing()
                     loadTrack(index);
                     if (playing) {
                         audio.play();
@@ -137,9 +137,9 @@ jQuery(function ($) {
                 }
             }),
             btnNext = $('#btnNext').on('click', function () { //function to run after clicking on next button
+              add_current_playing()
                 if ((index + 1) < trackCount) {
                     index++;
-                    add_current_playing()
                     loadTrack(index);
                     if (playing) {
                         audio.play();

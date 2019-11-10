@@ -33,8 +33,9 @@ $('#remove_fav').on('click', function () {
         contentType: false,
         processData: false,
         success: function (returndata) {
-            alert("Song Removed");
-            alert(returndata);
+            // alert("Song Removed");
+            // alert(returndata);
+            location.reload();
         },
         error: function () {
             alert("Something went wrong ");
