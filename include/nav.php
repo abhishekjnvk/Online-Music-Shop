@@ -10,6 +10,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.php">Home</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="profile.php">Profile</a>
+      </li>
 <!--       <li class="nav-item active">
         <a class="nav-link" href="all_news.php">Notice</a>
       </li> -->
@@ -32,5 +35,5 @@
   </div>
 </div>
 <?php
-error_reporting(0);
+// error_reporting(0);
 ?>
