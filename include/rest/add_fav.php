@@ -1,6 +1,5 @@
 <?php
 
-error_reporting(0);
   $artist=$_GET['artist'];
   $songName=$_GET['songName'];
   $coverImage=$_GET['coverImage'];

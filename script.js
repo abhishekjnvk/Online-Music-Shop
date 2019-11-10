@@ -91,11 +91,12 @@ jQuery(function ($) {
 
                 $('#plList').append('<li> \
                     <div class="plItem"> \
-                        <span class="plNum text-left">' +'₹10'+ '</span> \
+                        <span class="plNum text-left">' + '₹10' + '</span> \
                         <span class="plTitle text-center">' + trackName + '</span> \
                     </div> \
                 </li>');
             }),
+
             trackCount = tracks.length,
             npAction = $('#npAction'),
             npTitle = $('#npTitle'),
@@ -121,9 +122,10 @@ jQuery(function ($) {
                     loadTrack(index);
                 }
             }).get(0),
-            btnPrev = $('#btnPrev').on('click', function () {                                      //function to run after clicking on back button
+            btnPrev = $('#btnPrev').on('click', function () { //function to run after clicking on back button
                 if ((index - 1) > -1) {
                     index--;
+                    add_current_playing()
                     loadTrack(index);
                     if (playing) {
                         audio.play();
@@ -134,9 +136,10 @@ jQuery(function ($) {
                     loadTrack(index);
                 }
             }),
-            btnNext = $('#btnNext').on('click', function () {                                              //function to run after clicking on next button
+            btnNext = $('#btnNext').on('click', function () { //function to run after clicking on next button
                 if ((index + 1) < trackCount) {
                     index++;
+                    add_current_playing()
                     loadTrack(index);
                     if (playing) {
                         audio.play();
@@ -148,31 +151,29 @@ jQuery(function ($) {
                 }
             }),
 
-            li = $('#plList li').on('click', function () {                                                      //function to run after clicking on songs list
+            li = $('#plList li').on('click', function () { //function to run after clicking on songs list
                 var id = parseInt($(this).index());
                 if (id !== index) {
                     playTrack(id);
                 }
             }),
-
-
-            add_fav = $('#add_fav').on('click', function () {                                                                     //function for adding song to the favourite song
+            add_fav = $('#add_fav').on('click', function () { //function for adding song to the favourite song
                 var songName = $("#npTitle").text();
                 var coverImage = $('#album_picture').prop('src');
                 var url = $('#audio1').prop('src');
-                var artist =  $("#npArtist").text();
+                var artist = $("#npArtist").text();
                 var email = $("#loggd_in_email").text();
                 // console.log(password);
                 $.ajax({
                     url: 'include/rest/add_fav.php',
                     type: 'GET',
-                    data: "artist=" + artist + "&songName=" + songName + "&coverImage=" + coverImage+ "&url=" + url+ "&email=" + email,
+                    data: "artist=" + artist + "&songName=" + songName + "&coverImage=" + coverImage + "&url=" + url + "&email=" + email,
                     async: true,
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: function (returndata) {
-                        alert(returndata);         //for alerting the response from server
+                        alert(returndata); //for alerting the response from server
                     },
                     error: function () {
                         alert("Something went wrong ");
@@ -181,27 +182,54 @@ jQuery(function ($) {
                 return false;
             }),
 
+            add_fav = $('#add_to_cart').on('click', function () {
 
-            add_current_playing =function () {                                                                     //function for adding current playing song to the database
-                let songName = $("#npTitle").text();
-                let coverImage = $('#album_picture').prop('src');
-                let url = $('#audio1').prop('src');
-                let artist =  $("#npArtist").text();
-                let email = $("#loggd_in_email").text();
-                console.log("password");
+                var songName = $("#npTitle").text();
+                var coverImage = $('#album_picture').prop('src');
+                var url = $('#audio1').prop('src');
+                var artist = $("#npArtist").text();
+                var email = $("#loggd_in_email").text();
+                // console.log(password);
                 $.ajax({
-                    url: 'include/rest/add_current_playing.php',
+                    url: 'include/rest/add_to_cart.php',
                     type: 'GET',
-                    data: "artist=" + artist + "&songName=" + songName + "&coverImage=" + coverImage+ "&url=" + url+ "&email=" + email,
+                    data: "artist=" + artist + "&songName=" + songName + "&coverImage=" + coverImage + "&url=" + url + "&email=" + email,
                     async: true,
                     cache: false,
                     contentType: false,
                     processData: false,
                     success: function (returndata) {
-                        alert(returndata);         //for alerting the response from server
+                        alert(returndata); //for alerting the response from server
                     },
                     error: function () {
                         alert("Something went wrong ");
+                    }
+                });
+                return false;
+
+            }),
+
+
+            add_current_playing = function () { //function for adding current playing song to the database
+                let songName = $("#npTitle").text();
+                let coverImage = $('#album_picture').prop('src');
+                let url = $('#audio1').prop('src');
+                let artist = $("#npArtist").text();
+                let email = $("#loggd_in_email").text();
+                console.log("password");
+                $.ajax({
+                    url: 'include/rest/add_current_playing.php',
+                    type: 'GET',
+                    data: "artist=" + artist + "&songName=" + songName + "&coverImage=" + coverImage + "&url=" + url + "&email=" + email,
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (returndata) {
+                        // alert(returndata);         //for alerting the response from server
+                    },
+                    error: function () {
+                        // alert("Something went wrong ");
                     }
                 });
                 return false;

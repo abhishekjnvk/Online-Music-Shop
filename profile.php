@@ -4,6 +4,7 @@ checklogin();     //function to check weather user is logged in or not
 ?>
 <!doctype html>
 <html lang="en">
+<?php //error_reporting(0); ?>
 
 <head>
     <meta charset="utf-8">
@@ -26,76 +27,109 @@ checklogin();     //function to check weather user is logged in or not
 
 
 
-<div class="row">
-    <div class=" col-lg-3 col-md-6 col-sm-9 mx-3">
-        <center>
-            <h1 class="text-secondary mt-5"><b>Last Played</b></h1>
-        </center>
-        <?php
-          $email = $currentUser['email'];
-           $sql="SELECT * FROM last_played WHERE email ='$email'  ORDER BY sl DESC";
-          $result_set=mysqli_query($mysqli,$sql);
-         while($row=mysqli_fetch_assoc($result_set)){
-      ?>
-        <div class="border border-primary mx-auto mt-3" style="
-          padding:10px;/* URL to SVG filter */
-backdrop-filter: url(commonfilters.svg#filter);
-/* <filter-function> values */
-/* backdrop-filter: blur(2px);
-/* backdrop-filter: brightness(60%); */
-/* backdrop-filter: contrast(40%); */
-/* backdrop-filter: drop-shadow(4px 4px 10px blue); */
-/* backdrop-filter: grayscale(30%); */
-/* backdrop-filter: hue-rotate(120deg); */
-/* backdrop-filter: invert(70%); */
-/* backdrop-filter: opacity(20%); */
-/* backdrop-filter: sepia(90%); */
-/* backdrop-filter: saturate(80%);  */
-/* Multiple filters */
-backdrop-filter: url(filters.svg#filter) blur(4px) saturate(150%);">
+    <div class="row">
+
+
+
+
+
+
+        <div class=" col-lg-3 col-md-6 col-sm-9 mx-auto border rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
             <center>
+                <h1 class="text-secondary mt-5"><b>Favourite songs</b></h1>
+                <button class="btn btn-warning border border-secondary mx-auto" id="clear_fav_list">Clear list</button>
+            </center>
+            <?php
+              $email = $currentUser['email'];
+               $sql="SELECT * FROM fav_songs WHERE email ='$email'  ORDER BY sl DESC";
+              $result_set=mysqli_query($mysqli,$sql);
+             while($row=mysqli_fetch_assoc($result_set)){
+          ?>
+            <div class="border border-primary mx-auto mt-3" style=" padding:10px;">
+                <center>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="<?php echo $row['albumPic']; ?>" height="100px">
+                        </div>
+                        <div class="col-lg-8">
+                            <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
+                            <p class="mt-2 text-warning"><?php echo $row['artist']; ?></p>
+                            <p class="mt-2 text-warning" id="url_song"><?php echo $row['url']; ?></p>
+                            <p class="mt-2 text-secondary"><button class="btn btn-primary" id="remove_fav">💔</button></p>
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <?php } ?>
+        </div>
+
+
+        <div class=" col-lg-3 mx-auto col-md-6 col-sm-9 border rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
+            <center>
+                <h1 class="text-secondary mt-5"><b>Cart</b></h1>
+                <button class="btn btn-warning border border-secondary mx-auto" id="empty_cart">Empty</button>
+                <button class="btn btn-warning border border-secondary mx-auto">Proceed to checkout</button>
+
+            </center>
+            <?php
+                    $email = $currentUser['email'];
+                   $sql="SELECT * FROM cart WHERE email ='$email'  ORDER BY id DESC";
+                  $result_set=mysqli_query($mysqli,$sql);
+                  $price=0;
+                 while($row=mysqli_fetch_assoc($result_set)){
+              ?>
+            <div class="border border-primary mx-auto mt-3" style=" padding:10px;">
+                <center>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <img src="<?php echo $row['coverimage']; ?>" height="100px">
+                        </div>
+                        <div class="col-lg-8">
+                            <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
+                            <p class="mt-2 text-warning"><?php echo $row['artist']; ?></p>
+                        </div>
+                    </div>
+                </center>
+            </div>
+            <?php
+            $price=$price+ $row['price'];
+            } ?>
+            <p class="text-white">Total: <?php echo $price; ?>
+        </div>
+
+
+        <div class=" col-lg-3 col-md-6 col-sm-9 mx-3 border mx-auto rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
+            <center>
+                <h1 class="text-secondary mt-5"><b>Last Played</b></h1>
+                <button class="btn btn-warning border border-secondary mx-auto" id="delete_history">Delete History</button>
+            </center>
+
+            <?php
+                  $email = $currentUser['email'];
+                   $sql="SELECT * FROM last_played WHERE email ='$email'  ORDER BY sl DESC";
+                  $result_set=mysqli_query($mysqli,$sql);
+                 while($row=mysqli_fetch_assoc($result_set)){
+              ?>
+            <div class="border border-primary mx-auto mt-2" style="backdrop-filter: url(filters.svg#filter) blur(25px) saturate(150%);" id="history_div">
+                <center>
                     <div class="">
-                        <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
-                        <p class="mt-2 text-warning"><?php echo $row['artist']; ?></p>
+                        <p class="mt-1 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
+                        <p class="text-warning"><?php echo $row['artist']; ?></p>
+                        <p class="text-secondary"><?php echo "time of listen"; ?></p>
                     </div>
-            </center>
+                </center>
+            </div>
+            <?php } ?>
         </div>
-    <?php } ?>
+
+
     </div>
 
-
-
-
-
-
-    <div class=" col-lg-4 col-md-6 col-sm-9">
-        <center>
-            <h1 class="text-secondary mt-5"><b>Favourite songs</b></h1>
-        </center>
-        <?php
-          $email = $currentUser['email'];
-           $sql="SELECT * FROM fav_songs WHERE email ='$email'  ORDER BY sl DESC";
-          $result_set=mysqli_query($mysqli,$sql);
-         while($row=mysqli_fetch_assoc($result_set)){
-      ?>
-        <div class="border border-primary mx-auto mt-3" style=" padding:10px;">
-            <center>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <img src="<?php echo $row['albumPic']; ?>" height="100px">
-                    </div>
-                    <div class="col-lg-8">
-                        <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
-                        <p class="mt-2 text-warning"><?php echo $row['artist']; ?></p>
-                        <p class="mt-2 text-secondary"><button class="btn btn-primary">💔</button></p>
-                    </div>
-                </div>
-            </center>
-        </div>
-    <?php } ?>
+    <div class="text-center mb-3 mt-5 text-white">
+        <p id="loggd_in_email"><?php echo $_SESSION['email']; ?></p>
     </div>
-
-</div>
-
 </body>
+
 </html>
+
+<script src="include/profile.js"></script>
