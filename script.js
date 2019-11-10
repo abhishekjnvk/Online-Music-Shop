@@ -86,15 +86,13 @@ jQuery(function ($) {
             buildPlaylist = $.each(tracks, function (key, value) {
                 var trackNumber = "",
                     trackName = value.song,
-
                     trackDuration = value.artists;
-
 
 
                 $('#plList').append('<li> \
                     <div class="plItem"> \
-                        <span class="plNum">' + '</span> \
-                        <span class="plTitle">' + trackName + '</span> \
+                        <span class="plNum text-left">' +'₹10'+ '</span> \
+                        <span class="plTitle text-center">' + trackName + '</span> \
                     </div> \
                 </li>');
             }),
@@ -184,6 +182,30 @@ jQuery(function ($) {
             }),
 
 
+            add_current_playing =function () {                                                                     //function for adding current playing song to the database
+                let songName = $("#npTitle").text();
+                let coverImage = $('#album_picture').prop('src');
+                let url = $('#audio1').prop('src');
+                let artist =  $("#npArtist").text();
+                let email = $("#loggd_in_email").text();
+                console.log("password");
+                $.ajax({
+                    url: 'include/rest/add_current_playing.php',
+                    type: 'GET',
+                    data: "artist=" + artist + "&songName=" + songName + "&coverImage=" + coverImage+ "&url=" + url+ "&email=" + email,
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (returndata) {
+                        alert(returndata);         //for alerting the response from server
+                    },
+                    error: function () {
+                        alert("Something went wrong ");
+                    }
+                });
+                return false;
+            },
 
             loadTrack = function (id) {
                 $('.plSel').removeClass('plSel');
@@ -193,11 +215,14 @@ jQuery(function ($) {
                 nppicture.attr("src", tracks[id].cover_image);
                 index = id;
                 audio.src = tracks[id].url;
+                console.log("loading");
 
             },
             playTrack = function (id) {
                 loadTrack(id);
                 audio.play();
+                add_current_playing()
+
             };
 
         loadTrack(index);

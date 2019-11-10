@@ -37,8 +37,9 @@ checklogin();     //function to check weather user is logged in or not
 
                         <center>
                             <span id="npTitle"></span><br> <!--  Title of the song  -->
-                            <span id="npArtist"></span>
-                        </center><!--  Artist of the song goes here   -->
+                            <span id="npArtist"></span><!--  Artist of the song goes here   -->
+                        </center>
+
                     </div>
 
                     <div id="audiowrap" class="mt-3">
@@ -59,9 +60,7 @@ checklogin();     //function to check weather user is logged in or not
 
                     <!-- Start of Song List-->
                     <div id="plwrap" class="mt-5 border">
-                        <center>
                             <ul id="plList" style="list-style-type:none;"></ul>
-                        </center>
                     </div>
                     <!-- End of song list -->
 
