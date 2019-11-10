@@ -13,8 +13,7 @@ jQuery(function ($) {
                 'current-time',
                 'duration',
                 'mute',
-                'volume',
-                'download'
+                'volume'
             ]
         });
         // initialize playlist and controls
@@ -104,6 +103,8 @@ jQuery(function ($) {
             npTitle = $('#npTitle'),
             npArtist = $('#npArtist'),
             nppicture = $('#album_picture'),
+            form_artist = $('#form_artist'),
+            form_song = $('#form_song'),
             audio = $('#audio1').on('play', function () {
                 playing = true;
                 npAction.text('Now Playing...');
@@ -122,7 +123,7 @@ jQuery(function ($) {
                     loadTrack(index);
                 }
             }).get(0),
-            btnPrev = $('#btnPrev').on('click', function () {
+            btnPrev = $('#btnPrev').on('click', function () {                                      //function to run after clicking on back button
                 if ((index - 1) > -1) {
                     index--;
                     loadTrack(index);
@@ -135,7 +136,7 @@ jQuery(function ($) {
                     loadTrack(index);
                 }
             }),
-            btnNext = $('#btnNext').on('click', function () {
+            btnNext = $('#btnNext').on('click', function () {                                              //function to run after clicking on next button
                 if ((index + 1) < trackCount) {
                     index++;
                     loadTrack(index);
@@ -148,30 +149,51 @@ jQuery(function ($) {
                     loadTrack(index);
                 }
             }),
-            li = $('#plList li').on('click', function () {
+
+            li = $('#plList li').on('click', function () {                                                      //function to run after clicking on songs list
                 var id = parseInt($(this).index());
                 if (id !== index) {
-
                     playTrack(id);
                 }
             }),
+
+
+            add_fav = $('#add_fav').on('click', function () {                                                                     //function for adding song to the favourite song
+                var songName = $("#npTitle").text();
+                var coverImage = $('#album_picture').prop('src');
+                var url = $('#audio1').prop('src');
+                var artist =  $("#npArtist").text();
+                var email = $("#loggd_in_email").text();
+                // console.log(password);
+                $.ajax({
+                    url: 'include/rest/add_fav.php',
+                    type: 'GET',
+                    data: "artist=" + artist + "&songName=" + songName + "&coverImage=" + coverImage+ "&url=" + url+ "&email=" + email,
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (returndata) {
+                        alert(returndata);         //for alerting the response from server
+                    },
+                    error: function () {
+                        alert("Something went wrong ");
+                    }
+                });
+                return false;
+            }),
+
+
+
             loadTrack = function (id) {
                 $('.plSel').removeClass('plSel');
                 $('#plList li:eq(' + id + ')').addClass('plSel');
                 npTitle.text(tracks[id].song);
                 npArtist.text(tracks[id].artists);
                 nppicture.attr("src", tracks[id].cover_image);
-                // console.log(tracks[id].cover_image);
-
                 index = id;
                 audio.src = tracks[id].url;
 
-                updateDownload(id, audio.src);
-            },
-            updateDownload = function (id, source) {
-                player.on('loadedmetadata', function () {
-                    $('a[data-plyr="download"]').attr('href', source);
-                });
             },
             playTrack = function (id) {
                 loadTrack(id);

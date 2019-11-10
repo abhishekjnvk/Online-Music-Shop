@@ -1,9 +1,7 @@
 <?php
-session_start();//session starts here
-
+session_start();        //session starts here
 ?>
 <html>
-
 <head>
     <title>
         Online Music Shop
