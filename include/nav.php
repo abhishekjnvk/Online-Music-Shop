@@ -14,7 +14,7 @@
         <a class="nav-link" href="profile.php">Profile</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="cart.php">Cart</a>
+        <a class="nav-link" href="cart.php">Cart  (₹<?php echo cart_total(); ?>)</a>
       </li>
     </ul>
         <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModalCenter" name="logout">Logout</button>
