@@ -44,3 +44,51 @@ $('#remove_fav').on('click', function () {
     return false;
 
 });
+
+$('#clear_fav_list').on('click', function () {
+    var email = $("#loggd_in_email").text();
+      console.log("abhi")
+      console.log(email);
+    $.ajax({
+        url: 'include/rest/clear_fav.php',
+        type: 'GET',
+        data: "email=" + email,
+        async: true,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (returndata) {
+            // alert(returndata);
+            location.reload();
+        },
+        error: function () {
+            alert("Something went wrong ");
+        }
+    });
+    return false;
+
+});
+
+
+$('#empty_cart').on('click', function () {
+  console.log("abhi")
+    var email = $("#loggd_in_email").text();
+    $.ajax({
+        url: 'include/rest/clear_cart.php',
+        type: 'GET',
+        data: "email=" + email,
+        async: true,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (returndata) {
+            // alert(returndata);
+            location.reload();
+        },
+        error: function () {
+            alert("Something went wrong ");
+        }
+    });
+    return false;
+
+});

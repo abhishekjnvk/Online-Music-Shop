@@ -1,6 +1,9 @@
-<!doctype html>
+<?php
+include('include/functions/function.php');      //including file of functions
+checklogin();     //function to check weather user is logged in or not
+$currentUser= fetch_current_user();
+?><!doctype html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -8,19 +11,30 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<style>
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
     <title>Checkout || Online Music Shop</title>
 </head>
 
 <body class="bg-secondary">
     <?php  include('include/nav.php');?>
+
+
+        <?php
+               $total=cart_total()
+          ?>
     <div class="container mt-5">
         <div class="col-lg-7 mx-auto p-5 text-white">
             <div class="mx-auto border p-5 rounded-lg" style="
               backdrop-filter: url(filters.svg#filter) blur(50px) saturate(200%);">
                 <div class="col-lg-12">
                     <label for="validationTooltip05">Card Number</label>
-                    <input type="number" class="form-control" id="validationTooltip05" placeholder="Card Number" required>
+                    <input type="number" class="form-control" id="validationTooltip05" placeholder="Card Number" step="0.01"  required>
                     <div class="invalid-tooltip">
                         Please provide your card number
                     </div>
@@ -39,11 +53,17 @@
                     </div>
                     <div class="col-lg-6">
                         <label for="validationTooltip05">CVV</label>
-                        <input type="password" class="form-control" id="validationTooltip05" placeholder="CVV" required>
+                        <input type="number" class="form-control" id="validationTooltip05" placeholder="CVV" maxlength="4" required>
                     </div>
                 </div>
                 <div class="mx-auto mt-3 mb-4" style="height:40px">
-                    <button type="submit" class="btn btn-primary mb-2 mt-4 float-right">Checkout</button>
+                  <?php if ($total>0){ ?>
+                    <button type="submit" class="btn btn-primary mb-2 mt-4 float-right">Checkout  ( ₹<?php echo $total; ?> )</button>
+
+                <?php
+              } else { ?>
+                    <button type="submit" class="btn btn-primary mb-2 mt-4 col-lg-12 mx-auto" disabled>Nothing to checkout</button>
+<?php } ?>
                 </div>
             </div>
         </div>

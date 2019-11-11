@@ -1,6 +1,7 @@
 <?php
 include('include/functions/function.php');      //including file of functions
 checklogin();     //function to check weather user is logged in or not
+$currentUser= fetch_current_user();
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,9 +15,10 @@ checklogin();     //function to check weather user is logged in or not
     <title>Home</title>
 </head>
 
-<body style="background: url('include/bg2.jpg') repeat 0 0;">
-    <?php  include('include/nav.php');
-    $currentUser= fetch_current_user();?>
+<body style="background: url('include/bg.jpg') repeat 0 0;">
+
+    <?php  include('include/nav.php');?>
+      <div class="container" >
     <div class="container">
         <center>
             <image src="https://icon-library.net/images/profile-png-icon/profile-png-icon-1.jpg" class="mt-5" width="100px">
@@ -24,83 +26,39 @@ checklogin();     //function to check weather user is logged in or not
                 <p class="text-white mt-1" style="font-size:25px;"><?php echo $currentUser['email']; ?></p>
         </center>
     </div>
-
-
-
     <div class="row">
-
-
-
-
-
-
-        <div class=" col-lg-3 col-md-6 col-sm-9 mx-auto border rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
+<!-- start of favourite list -->
+        <div class=" col-lg-5 col-md-6 col-sm-9 mx-auto border rounded mt-2" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
             <center>
-                <h1 class="text-secondary mt-5"><b>Favourite songs</b></h1>
+                <h1 class="bg-primary text-white mt-2 p-2 rounded"><b>Saved songs</b></h1>
                 <button class="btn btn-secondary border border-secondary mx-auto" id="clear_fav_list">Clear list</button>
             </center>
             <?php
               $email = $currentUser['email'];
-               $sql="SELECT * FROM fav_songs WHERE email ='$email'  ORDER BY sl DESC";
+               $sql="SELECT * FROM fav_songs WHERE email ='$email'  ORDER BY sl DESC LIMIT 15";
               $result_set=mysqli_query($mysqli,$sql);
              while($row=mysqli_fetch_assoc($result_set)){
           ?>
             <div class="border border-primary mx-auto mt-3" style=" padding:10px;">
                 <center>
-                    <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-12">
                             <img src="<?php echo $row['albumPic']; ?>" height="100px">
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
                             <p class="mt-2 text-white"><?php echo $row['artist']; ?></p>
                             <p class="mt-2 text-secondary" id="url_song"><?php echo $row['url']; ?></p>
                             <p class="mt-2 text-secondary"><button class="btn btn-primary" id="remove_fav">💔</button></p>
                         </div>
-                    </div>
                 </center>
             </div>
             <?php } ?>
         </div>
-
-
-        <div class=" col-lg-3 mx-auto col-md-6 col-sm-9 border rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
+<!-- end of favourite list -->
+<!-- start of history -->
+        <div class=" col-lg-5 col-md-6 col-sm-9 mx-3 border mx-auto rounded mt-2" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
             <center>
-                <h1 class="text-secondary mt-5"><b>Cart</b></h1>
-                <button class="btn btn-secondary border border-secondary mx-auto" id="empty_cart">Empty</button>
-                <button class="btn btn-warning border border-success mx-auto">Proceed to checkout</button>
-
-            </center>
-            <?php
-                    $email = $currentUser['email'];
-                   $sql="SELECT * FROM cart WHERE email ='$email'  ORDER BY id DESC";
-                  $result_set=mysqli_query($mysqli,$sql);
-                  $price=0;
-                 while($row=mysqli_fetch_assoc($result_set)){
-              ?>
-            <div class="border border-primary mx-auto mt-3" style=" padding:10px;">
-                <center>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <img src="<?php echo $row['coverimage']; ?>" height="100px">
-                        </div>
-                        <div class="col-lg-8">
-                            <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
-                            <p class="mt-2 text-white"><?php echo $row['artist']; ?></p>
-                        </div>
-                    </div>
-                </center>
-            </div>
-            <?php
-            $price=$price+ $row['price'];
-            } ?>
-            <p class="text-white">Total: <?php echo $price; ?>
-        </div>
-
-
-        <div class=" col-lg-3 col-md-6 col-sm-9 mx-3 border mx-auto rounded" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
-            <center>
-                <h1 class="text-secondary mt-5"><b>Last Played</b></h1>
+                <h1 class="bg-primary text-white mt-2 p-2 rounded"><b>Last Played</b></h1>
                 <button class="btn btn-secondary border border-secondary mx-auto" id="delete_history">Delete History</button>
             </center>
 
@@ -115,21 +73,21 @@ checklogin();     //function to check weather user is logged in or not
                     <div class="">
                         <p class="mt-1 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
                         <p class="text-white"><?php echo $row['artist']; ?></p>
-                        <p class="text-secondary"><?php echo "time of listen"; ?></p>
+                        <p class="text-warning"><?php echo $row['time']; ?></p>
                     </div>
                 </center>
             </div>
             <?php } ?>
         </div>
-
+<!-- end of history -->
 
     </div>
 
     <div class="text-center mb-3 mt-5 text-white">
         <p id="loggd_in_email"><?php echo $_SESSION['email']; ?></p>
     </div>
+  </div>
 </body>
 
 </html>
-
 <script src="include/profile.js"></script>

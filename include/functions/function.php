@@ -115,5 +115,18 @@ function fetch_current_user(){
   return $fetched_details;
 }
 
+function cart_total(){
+  global $mysqli;
+  $currentUser= fetch_current_user();
+  $email = $currentUser['email'];
+  $sql="SELECT * FROM cart WHERE email ='$email'  ORDER BY id DESC";
+  $result_set=mysqli_query($mysqli,$sql);
+  $total=0;
+  while($row=mysqli_fetch_assoc($result_set)){
+    $total=$total+$row['price'];
+  }
+  return $total;
+
+}
 
 ?>
