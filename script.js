@@ -216,7 +216,6 @@ jQuery(function ($) {
                 let url = $('#audio1').prop('src');
                 let artist = $("#npArtist").text();
                 let email = $("#loggd_in_email").text();
-                console.log("password");
                 $.ajax({
                     url: 'include/rest/add_current_playing.php',
                     type: 'GET',
@@ -243,7 +242,7 @@ jQuery(function ($) {
                 nppicture.attr("src", tracks[id].cover_image);
                 index = id;
                 audio.src = tracks[id].url;
-                console.log("loading");
+                // console.log("loading");
 
             },
             playTrack = function (id) {

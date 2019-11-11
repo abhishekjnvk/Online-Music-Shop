@@ -11,6 +11,7 @@ $('#delete_history').on('click', function () {
         success: function (returndata) {
             // alert("Done");         //for alerting the response from server
             $("#history_div").empty()
+            location.reload();
         },
         error: function () {
             alert("Something went wrong ");

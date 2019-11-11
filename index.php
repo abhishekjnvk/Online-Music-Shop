@@ -29,7 +29,7 @@ checklogin();     //function to check weather user is logged in or not
                         <div style="height:300px;">
                             <center>
                                 <button class="btn btn-warning border border-secondary mx-auto float-right mt-3" id="add_to_cart">Add to cart</button>
-                                <img src="" class="mt-2 mx-auto col-lg-5" alt="Album Picture" id="album_picture"><br> <!--  Album picture goes here   -->
+                                <img src="" class="mt-2 mx-auto col-lg-6" alt="Album Picture" id="album_picture"><br> <!--  Album picture goes here   -->
                                 <span id="npAction">Paused...</span>
                                 <!-- <button class="btn btn-warning border border-secondary mx-auto float-right mt-5">Add to fav.</button> -->
 
@@ -38,8 +38,8 @@ checklogin();     //function to check weather user is logged in or not
 
 
                         <center>
-                            <span id="npTitle"></span><br> <!--  Title of the song  -->
-                            <span id="npArtist"></span><!--  Artist of the song goes here   -->
+                            <b><span id="npTitle"></span></b><br> <!--  Title of the song  -->
+                            <b><span id="npArtist" class="text-white"></span></b><!--  Artist of the song goes here   -->
                         </center>
 
                     </div>
@@ -69,11 +69,12 @@ checklogin();     //function to check weather user is logged in or not
 
                 </div>
             </div>
-            <div class="center mb-3">
-                <p id="loggd_in_email"><?php echo $_SESSION['email']; ?></p>
-            </div>
         </div>
 
+        <div class="center">
+            <p id="loggd_in_email" class=" mb-5"><?php echo $_SESSION['email']; ?><br>
+            <a href="include/logout.php" class="text-warning ">Logout</a></p>
+        </div>
     </div>
 
 

@@ -1,5 +1,6 @@
 <?php
-    $mysqli = new mysqli("localhost", "root", "", "music_shop");
+$mysqli = new mysqli("localhost", "root", "", "music_shop");
+
 
 function checklogin() {
 	session_start();
