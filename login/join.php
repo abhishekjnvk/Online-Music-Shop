@@ -71,9 +71,10 @@ if(isset($_POST['join']))
         $check_email= check_email($user_email);
         if($check_email==0)
         {
-            $response = sign_up($username,$user_email,$user_pass);
+            sign_up($username,$user_email,$user_pass);
+            $response =send_verification_code($user_email);
             if($response == 1){
-                 echo "<script>alert('Done')</script>";
+                 echo "<script>alert('Please check your email and activate your account\it may take some time')</script>";
             }
 
         if ($response == 0){

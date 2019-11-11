@@ -29,8 +29,8 @@ session_start();        //session starts here
             // $('form input[type="submit"]').prop("disabled", true);
 </script>
         <div class="form-label-group">
-            <input type="text" id="inputEmail" class="form-control" placeholder="Username" name="email" required autofocus>
-            <label for="inputEmail">Username</label>
+            <input type="text" id="inputEmail" class="form-control" placeholder="Email" name="email" required autofocus>
+            <label for="inputEmail">Email</label>
         </div>
 
         <div class="form-label-group">
@@ -38,7 +38,7 @@ session_start();        //session starts here
             <label for="inputPassword">Password</label>
         </div>
         <button class="btn btn-lg btn-primar" id="login" type="submit" name="login">Sign in</button>
-        <p class="mt-5 "><a href="reset.php" class="text-warning">Forgot Password</a> <a href="join.php" class="float-right text-warning">Sign up</a></p>
+        <p class="mt-3 "><a href="reset.php" class="text-warning">Forgot Password</a> <a href="join.php" class="float-right text-warning">Sign up</a></p>
         <!-- <p class="mt-5 mb-3 text-muted text-center">&copy; abhishek</p> -->
     </form>
     <!-- Optional JavaScript -->
