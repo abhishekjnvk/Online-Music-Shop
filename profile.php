@@ -13,7 +13,7 @@ $currentUser= fetch_current_user();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title><?php echo $currentUser['username']; ?> || Profile</title>
 </head>
-<body style="background: url('include/bg.jpg') repeat 0 0;">
+<body style="background: url('include/bg2.jpg') repeat 0 0;">
     <?php  include('include/nav.php');?>
       <div class="container" >
     <div class="container">

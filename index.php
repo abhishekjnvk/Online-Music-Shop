@@ -33,7 +33,7 @@ checklogin();     //function to check weather user is logged in or not
                         <div style="height:300px;">
                             <center>
                                 <button class="btn btn-warning border border-secondary mx-auto float-right mt-3" id="add_to_cart">Add to cart</button>
-                                <img src="" class="mt-2 mx-auto col-lg-4 col-sm-12" alt="Album Picture" id="album_picture"><br> <!--  Album picture goes here   -->
+                                <img src="" class="mt-2 mx-auto col-lg-5 col-sm-12" alt="Album Picture" id="album_picture"><br> <!--  Album picture goes here   -->
                                 <span id="npAction">Paused...</span>
                                 <!-- <button class="btn btn-warning border border-secondary mx-auto float-right mt-5">Add to fav.</button> -->
                             </center>

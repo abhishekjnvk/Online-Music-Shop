@@ -49,7 +49,7 @@ $currentUser= fetch_current_user();
                         <div class="col-lg-12">
                             <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row3['songName']; ?></b></p>
                             <p class="mt-2 text-white"><?php echo $row3['artist']; ?></p>
-                            <p class="text-secondary">₹ 10</p>
+                            <p class="text-warning">₹ 10</p>
                         </div>
                 </center>
             </div>
