@@ -6,7 +6,6 @@ $currentUser= fetch_current_user();
 <!doctype html>
 <html lang="en">
 <?php //error_reporting(0); ?>
-
 <head>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
@@ -14,9 +13,7 @@ $currentUser= fetch_current_user();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title><?php echo $currentUser['username']; ?> || Profile</title>
 </head>
-
 <body style="background: url('include/bg.jpg') repeat 0 0;">
-
     <?php  include('include/nav.php');?>
       <div class="container" >
     <div class="container">
@@ -47,7 +44,7 @@ $currentUser= fetch_current_user();
                         <div class="col-lg-12">
                             <p class="mt-2 text-white" style="font-family:vardana; font-size:22px"><b><?php echo $row['songName']; ?></b></p>
                             <p class="mt-2 text-white"><?php echo $row['artist']; ?></p>
-                            <p class="mt-2 text-secondary" id="url_song"><?php echo $row['url']; ?></p>
+                            <p class="mt-2 text-warning" id="url_song"><?php echo $row['url']; ?></p>
                             <p class="mt-2 text-secondary"><button class="btn btn-primary" id="remove_fav">💔</button></p>
                         </div>
                 </center>
@@ -55,6 +52,7 @@ $currentUser= fetch_current_user();
             <?php } ?>
         </div>
 <!-- end of favourite list -->
+
 <!-- start of history -->
         <div class=" col-lg-5 col-md-6 col-sm-9 mx-3 border mx-auto rounded mt-2" style="backdrop-filter: url(filters.svg#filter) blur(8px) saturate(150%);">
             <center>
@@ -80,26 +78,19 @@ $currentUser= fetch_current_user();
             <?php } ?>
         </div>
 <!-- end of history -->
-
     </div>
-
     <div class="text-center mb-3 mt-5 text-white">
         <p id="loggd_in_email"><?php echo $_SESSION['email']; ?></p>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<<<<<<< HEAD
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.5.6/plyr.min.js'></script>
-    <script src="include/profile.js"></script>
-=======
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.5.6/plyr.min.js'></script>
   <script src="include/profile.js"></script>
->>>>>>> 05ab1fe2bdb24c99f72c6eecdcb09d037e1436d5
 
 </body>
 
