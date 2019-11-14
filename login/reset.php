@@ -19,7 +19,7 @@ session_start();//session starts here
 </head>
 
 <body style="background: url('../include/bg.jpg') repeat 0 0;">
-    <form class="form-signin" method="post" action="join.php">
+    <form class="form-signin" method="post" action="reset.php">
         <div class="text-center mb-4">
             <center>
                 <img class="mb-4" src="../include/logo.png" alt="" width="72" height="72">
@@ -49,15 +49,14 @@ include('../include/functions/function.php');
 if(isset($_POST['join']))  
 {
     $user_email=$_POST['email'];  
-    
         $check_email= check_email($user_email);
         if($check_email==1)
         {
-            $response = send_verification_code($user_email);
+            $response = send_reset_code($user_email);
             if($response == 1){
-                 echo "<script>alert('Done')</script>";
+                 echo "<script>alert('Check Your Email please')</script>";
             }
-    
+            
         if ($response == 0){
           echo "<script>alert('Something went wrong! Please try again')</script>";
         }

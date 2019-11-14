@@ -17,7 +17,7 @@ jQuery(function ($) {
             ]
         });
         // initialize playlist and controls
-        var index = 0,
+        var index = 3,
             playing = false,
             tracks = [
                 {
