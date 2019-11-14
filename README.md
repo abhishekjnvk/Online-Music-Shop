@@ -35,11 +35,7 @@ Enter your email and password to login into the website
 
 # Recove password
 click on the <b>forgot password</b> link and enter your email you will get a email just click on the link and follow further instructions
-<div class="row">
 <img src="https://github.com/abhishekjnvk/Online-Music-Shop/blob/master/Screenshot/reset_password1.png" width="33%">
-<img src="https://github.com/abhishekjnvk/Online-Music-Shop/blob/master/Screenshot/reset_password2.png" width="33%">
-<img src="https://github.com/abhishekjnvk/Online-Music-Shop/blob/master/Screenshot/reset_password3.png" width="33%">
-</div>
 
 # Index page
 #### Purchase a song
@@ -68,6 +64,6 @@ go to cart section and click on the clear cart button
 Click on the song you want to buy, click on add to cart button on the top of page after that you will receive a confirmation message on your screen now go to cart section and check your order and proceed for checkout after paying the fee you will get the song in your registered email
 <div class="row">
 <img src="https://github.com/abhishekjnvk/Online-Music-Shop/blob/master/Screenshot/cart.png" width="40%">
-<img src="https://github.com/abhishekjnvk/Online-Music-Shop/blob/master/Screenshot/checkout.png" width="40%">
+<img src="https://github.com/abhishekjnvk/Online-Music-Shop/blob/master/Screenshot/checkout.PNG" width="60%">
 </div>
 
