@@ -26,10 +26,18 @@ function send_email($confirmation_code) {
 
 function sign_up($username,$email,$password) {
 	global $mysqli;
+<<<<<<< HEAD
 	$insert_notice = "INSERT INTO users (username,email,password) values ('$username','$email','$password')";
 	$finally_update = mysqli_query($mysqli, $insert_notice);
 	if($finally_update){
 	return 1;
+=======
+
+	$insert_notice = "INSERT INTO users (username,email,password) values ('$username','$email','$password')";
+     $finally_update = mysqli_query($mysqli, $insert_notice);
+     if($finally_update){
+     return 1;
+>>>>>>> 584375af38eb19f090ee68042a4c228cd0b3cb21
 	}
 	else {
 		return 0;
@@ -137,7 +145,6 @@ function send_verification_code($email){
 		return 0;
 	}
 }
-
 
 
 function send_reset_code($email){
