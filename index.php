@@ -76,9 +76,6 @@ checklogin();     //function to check weather user is logged in or not
             <a href="include/logout.php" class="text-warning ">Logout</a>
         </div>
     </div>
-
-
-
 <script src="include/script.js"></script>
 </body>
 

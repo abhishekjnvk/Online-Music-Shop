@@ -1,7 +1,10 @@
 # Online-Music-Shop
 
 ### Instructions
-Download the project start your apache and my SQL server, go to phpMyAdmin and import create a database with name music_shop and import databse.sql file now open the index.php file in your browser
+Download the project start your apache and my SQL server, go to phpMyAdmin and create a database with name music_shop and import databse.sql file now open the index.php file in your browser
+<b>Sample User:</b>
+<b>email:abhishek@gmail.com</b>
+<b>password:admin</b>
 
 ### Features introduced: <br>
 •    You can play a song <br>
