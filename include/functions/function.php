@@ -30,12 +30,16 @@ function sign_up($username,$email,$password) {
 	$finally_update = mysqli_query($mysqli, $insert_notice);
 	if($finally_update){
 	return 1;
+	$insert_notice = "INSERT INTO users (username,email,password) values ('$username','$email','$password')";
+     $finally_update = mysqli_query($mysqli, $insert_notice);
+     if($finally_update){
+     return 1;
 	}
 	else {
 		return 0;
 		}
 }
-
+}
 
 function login_user($email,$password) {
 	global $mysqli;
@@ -128,7 +132,6 @@ function send_verification_code($email){
 	$message .= '<h1 style="color:#f40;">Hello User please click on the the link to activate your account!</h1>';
 	$message .= $button_email;
 	$message .= '</body></html>';
-
 	// Sending email
 	if(mail($to, $subject, $message, $headers)){
 	 	return 1;
@@ -137,7 +140,6 @@ function send_verification_code($email){
 		return 0;
 	}
 }
-
 
 
 function send_reset_code($email){
