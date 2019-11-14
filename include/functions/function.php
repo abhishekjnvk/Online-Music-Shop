@@ -1,10 +1,5 @@
 <?php
 $mysqli = new mysqli("localhost", "root", "", "music_shop");
-// $mysqli = new mysqli("fdb21.awardspace.net", "3108249_revanta", "1Abhishek", "3108249_revanta");
-
-
-
-
 function checklogin() {
 	session_start();
 	if(!$_SESSION['email'])
@@ -12,9 +7,6 @@ function checklogin() {
 	header("Location: login");//redirect to login page to secure the welcome page without login access.
 	}
 }
-
-
-
 function getIp() {
 	$ip = $_SERVER['REMOTE_ADDR'];
 	if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -26,7 +18,6 @@ function getIp() {
 	return $ip;
 }
 
-
 function send_email($confirmation_code) {
 	include('mail/index1.php');
 	send_email1254("abhishekkumarjnvk@gmail.com","1215");
@@ -35,11 +26,10 @@ function send_email($confirmation_code) {
 
 function sign_up($username,$email,$password) {
 	global $mysqli;
-	$encrypted_password= md5($password);
-	$insert_notice = "INSERT INTO users (username,email,password) values ('$username','$email','$encrypted_password')";
-     $finally_update = mysqli_query($mysqli, $insert_notice);
-     if($finally_update){
-     return 1;
+	$insert_notice = "INSERT INTO users (username,email,password) values ('$username','$email','$password')";
+	$finally_update = mysqli_query($mysqli, $insert_notice);
+	if($finally_update){
+	return 1;
 	}
 	else {
 		return 0;
@@ -49,8 +39,7 @@ function sign_up($username,$email,$password) {
 
 function login_user($email,$password) {
 	global $mysqli;
-	$encrypted_password= md5($password);
-    $check_user="select * from users WHERE email ='$email' AND password='$encrypted_password'";
+    $check_user="select * from users WHERE email ='$email' AND password='$password'";
     $run=mysqli_query($mysqli,$check_user);
     if(mysqli_num_rows($run))
     {
@@ -94,20 +83,6 @@ function is_verified($email) {
     }
 }
 
-
-//
-// function send_verification_code($email,$verification_code){
-//   global $mysqli;
-//   $encrypted_password= md5($password);
-//   $insert = "INSERT INTO users (email,code) values ('$email','$verification_code')";
-//      $finally_update = mysqli_query($mysqli, $insert);
-//      if($finally_update){
-//      return 1;
-//   }
-//   else {
-//     return 0;
-//     }
-// }
 
 function fetch_current_user(){
   global $mysqli;
@@ -163,12 +138,48 @@ function send_verification_code($email){
 	}
 }
 
+
+
+function send_reset_code($email){
+	global $mysqli;
+
+  $query="SELECT * FROM `users` WHERE `email` = '$email'";
+  $run_query = mysqli_query($mysqli,$query);
+  $fetched_details= mysqli_fetch_array($run_query);
+  $password = $fetched_details['password'];
+	$token=rand(2222,9999);
+	$code=rand(100000,999999);
+	insert_token($email,$token,$code);
+	$to = $email;
+	$subject = 'your Password';
+	$from = 'abhishekkumarvidarthi@gmail.com';
+	// To send HTML mail, the Content-type header must be set
+	$headers  = 'MIME-Version: 1.0' . "\r\n";
+	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+	// Create email headers
+	$headers .= 'From: '.$from."\r\n".
+	'Reply-To: '.$from."\r\n" .
+	'X-Mailer: PHP/' . phpversion();
+	// Compose a simple HTML email message
+	$message = '<html><body>';
+	$message .= '<h1 style="color:#f40;">Hello User you asked for Password</h1> your password is: ';
+	$message .= $password;
+	$message .= '</body></html>';
+
+	// Sending email
+	if(mail($to, $subject, $message, $headers)){
+	 	return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
 function insert_token($email,$token,$code){
 	global $mysqli;
 	$sql= mysqli_query($mysqli,"INSERT INTO verification(email,token,code) VALUES('".$email."','".$token."','".$code."')");
 }
-
-
 function verify_email($email,$token,$code){
 	global $mysqli;
 		$check_user="select * from verification WHERE email ='$email' AND token='$token' AND code='$code'";

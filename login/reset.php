@@ -1,6 +1,6 @@
-<?php  
-session_start();//session starts here  
-  
+<?php
+session_start();//session starts here
+
 ?>
 <html>
 
@@ -19,7 +19,7 @@ session_start();//session starts here
 </head>
 
 <body style="background: url('../include/bg.jpg') repeat 0 0;">
-    <form class="form-signin" method="post" action="join.php">
+    <form class="form-signin" method="post" action="reset.php">
         <div class="text-center mb-4">
             <center>
                 <img class="mb-4" src="../include/logo.png" alt="" width="72" height="72">
@@ -31,7 +31,7 @@ session_start();//session starts here
             <label for="inputEmail">Email</label>
         </div>
 
-        <button class="btn btn-lg btn-primar" id="login" type="submit" name="join">Proceed</button>
+        <button class="btn btn-lg btn-primar" id="login" type="submit" name="reset">Proceed</button>
         <p class="mt-3 text-center"><a href="index.php" class="text-white">Back to Login</a></p>
         <!-- <p class="mt-5 mb-3 text-muted text-center">&copy; abhishek</p> -->
     </form>
@@ -44,20 +44,19 @@ session_start();//session starts here
 
 </html>
 
-<?php  
+<?php
 include('../include/functions/function.php');
-if(isset($_POST['join']))  
+if(isset($_POST['reset']))
 {
-    $user_email=$_POST['email'];  
-    
+    $user_email=$_POST['email'];
         $check_email= check_email($user_email);
         if($check_email==1)
         {
-            $response = send_verification_code($user_email);
+            $response = send_reset_code($user_email);
             if($response == 1){
-                 echo "<script>alert('Done')</script>";
+                 echo "<script>alert('Check Your Email please')</script>";
             }
-    
+
         if ($response == 0){
           echo "<script>alert('Something went wrong! Please try again')</script>";
         }
@@ -65,7 +64,5 @@ if(isset($_POST['join']))
 if ($check_email==0) {
     echo "<script>alert('Email not registered')</script>";
 }
-
-
- }  
+ }
 ?>
