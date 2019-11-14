@@ -21,8 +21,6 @@ checklogin();     //function to check weather user is logged in or not
 </head>
 
 <body style="background: url('include/bg2.jpg') repeat 0 0;">
-    <?php  include('include/nav.php');?>
-
     <!--including top navigation file -->
     <div class="container bg-dark">
         <div class="container bg-primary">
@@ -45,21 +43,21 @@ checklogin();     //function to check weather user is logged in or not
 
                     </div>
 
-                    <div id="audiowrap" class="mt-3">
+                    <!-- <div id="audiowrap" class="mt-3"> -->
                         <!-- Audio player -->
-                        <div id="audio0">
-                            <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio> <!--  Text to displayed if browder doesnot support audio   -->
-                        </div>
+                        <!-- <div id="audio0"> -->
+                            <!-- <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio> <!--  Text to displayed if browder doesnot support audio   --> -->
+                        <!-- </div> -->
 
                         <!-- control button starts-->
-                        <div id="tracks" class="mt-3 col-lg-12">
-                            <a id="btnPrev"><button class="btn btn-warning border border-secondary mx-auto"><span style='font-size:40px;'>&#8592;</span></button></a>
-                            <a id="add_fav"><button class="btn btn-warning border border-secondary mx-auto" type="submit"><span style='font-size:40px;'>❤</span></button></a>
-                            <a id="btnNext"><button class="btn btn-warning border border-secondary ml-2 mx-auto"><span style='font-size:40px;'>&#8594;</span></button></a>
-                        </div>
+                        <!-- <div id="tracks" class="mt-3 col-lg-12"> -->
+                            <!-- <a id="btnPrev"><button class="btn btn-warning border border-secondary mx-auto"><span style='font-size:40px;'>&#8592;</span></button></a> -->
+                            <!-- <a id="add_fav"><button class="btn btn-warning border border-secondary mx-auto" type="submit"><span style='font-size:40px;'>❤</span></button></a> -->
+                            <!-- <a id="btnNext"><button class="btn btn-warning border border-secondary ml-2 mx-auto"><span style='font-size:40px;'>&#8594;</span></button></a> -->
+                        <!-- </div> -->
                         <!-- control button Ends -->
 
-                    </div>
+                    <!-- </div> -->
 
                     <!-- Start of Song List-->
                     <div id="plwrap" class="mt-5 mr-5">
